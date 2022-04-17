@@ -1,0 +1,26 @@
+{
+  "name": "bnhcares-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "scripts": {
+    "watch": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "lodash": "^4.17.21",
+    "msnodesqlv8": "^2.4.7",
+    "mssql": "^8.0.2",
+    "sequelize": "^6.18.0",
+    "tedious": "^14.4.0"
+  },
+  "devDependencies": {
+    "morgan": "^1.10.0",
+    "nodemon": "^2.0.15"
+  }
+}
