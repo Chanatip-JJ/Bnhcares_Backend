@@ -5,8 +5,8 @@ require('dotenv').config({
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
-const packageRouter = require('./routes/package/packages.router')
-
+const packageRouter = require('./routes/packages.router')
+//const orderRouter = require('./routes/order.router')
 
 const app  = express()
 app.use(cors({
@@ -14,9 +14,7 @@ app.use(cors({
 )
 app.use(morgan('combined'))
 app.use(express.json())
-// app.use('/',(req,res) => {
-//     res.status(200).send('Hi')
-// })
+app.use(express.urlencoded({extended: true}))
 app.use('/packages',packageRouter)
-
+//app.use('/orders',orderRouter)
 module.exports = app
