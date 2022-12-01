@@ -1,0 +1,57 @@
+module.exports = function buildGetDoctorAppointmentManagement({}) {
+        return function makeGetDoctorAppointmentManagement({
+            uid,
+            careprovider_uid,
+            location_uid,
+            showCareprovider,
+            showSchedule,
+            current_day_start_trim,
+            start_time_trim,
+            end_time_trim,
+            allowAppoint,
+            isConfirm,
+            isReschedule,
+            isCancel,
+            isTeleConsultation,
+            telephone,
+            service_description_en,
+            service_description_th,
+            sunday,
+            monday,
+            tuesday,
+            wednesday,
+            thursday,
+            friday,
+            saturday,
+            status,
+    } = {}) {
+        
+        return Object.freeze({
+            getUID : () => uid || null,
+            getCareprovider_uid : () => careprovider_uid || null,
+            getLocation_uid : () => location_uid || null,
+            getShowCareprovider:() => showCareprovider || true,
+            getShowSchedule:() => showSchedule || true,
+            getCurrent_day_start_trim : () => current_day_start_trim || 0,
+            getStart_time_trim : () => start_time_trim || 0,
+            getEnd_time_trim : () => end_time_trim || 0,
+            getAllowAppoint : () => allowAppoint || true,
+            getIsConfirm : () => isConfirm || true,
+            getIsReschedule : () => isReschedule || true,
+            getIsCancel : () => isCancel || true,
+            getIsTeleConsultation : () => isTeleConsultation || null,
+            getTelephone:() => telephone || null,
+            getService_description_en :() => service_description_en || null,
+            getService_description_th :() => service_description_th || null,
+            getSunday:()=> sunday || false,
+            getMonday:()=> monday || false,
+            getTuesday:()=> tuesday || false,
+            getWednesday:()=> wednesday || false,
+            getThursday:()=> thursday || false,
+            getFriday:()=> friday || false,
+            getSaturday:()=> saturday || false,
+            getStatus : () => status || null
+        })
+    }
+}
+

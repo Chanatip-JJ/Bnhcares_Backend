@@ -1,36 +1,149 @@
-// validate input request.
-module.exports = function buildPayment({validator,DateTime,FixedOffsetZone}) {
+//* swagger documentation --> Payment  as below
+/**
+ * @swagger
+ * components:
+ *   schemas:
+ *     Payment:
+ *       type: object
+ *       properties:
+ *          cardToken:
+ *            type: string
+ *          loyaltyPoints:
+ *            type: string        
+ *          merchantID:
+ *            type: string   
+ *          invoiceNo:
+ *            type: string  
+ *          cardNo:
+ *            type: string 
+ *          amount:
+ *            type: string
+ *          monthlyPayment:
+ *            type: string     
+ *          recurringUniqueID:
+ *            type: string
+ *          currencyCode:
+ *            type: string       
+ *          tranRef:
+ *            type: string
+ *          referenceNo:
+ *            type: string 
+ *          approvalCode:
+ *            type: string   
+ *          eci:
+ *            type: string   
+ *          transactionDateTime:
+ *            type: string
+ *          agentCode:
+ *            type: string
+ *          channelCode:
+ *            type: string
+ *          issuerCountry:
+ *            type: string
+ *          issuerBank:
+ *            type: string
+ *          cardType:
+ *            type: string
+ *          idempotencyID:
+ *            type: string
+ *          paymentScheme:
+ *            type: string       
+ *          respCode:
+ *            type: string     
+ *          respDesc:
+ *            type: string
+ */
+module.exports = function buildPayment({}) {
     return function makePayment({
-            NO = {},
-            ORDER_ID,
-            SYSTEM,
-            REF_CODE,
-            AMOUNT,
-            PAID_AGENT,
-            MASKED_PAN,
-            APPROVAL_CODE,
-            TRANSACTION_REF,
-            PROCESS_BY,
-            CHANNEL_RESPONE,
-            PAYMENT_STATUS,
-            JSON_2C2P,
+        cardToken,
+        loyaltyPoints,
+        merchantID,
+        invoiceNo,
+        cardNo,
+        amount,
+        monthlyPayment,
+        currencyCode,
+        recurringUniqueID,
+        tranRef,
+        referenceNo,
+        approvalCode,
+        eci,
+        transactionDateTime,
+        agentCode,
+        channelCode,
+        issuerCountry,
+        issuerBank,
+        cardType,
+        idempotencyID,
+        paymentScheme,
+        respCode,
+        respDesc
     } = {}) {
-        
+        const ORDER_ID = getOrderId(invoiceNo)
+        const json_2c2p = JSON.stringify({
+                                        ORDER_ID,
+                                        cardToken,
+                                        loyaltyPoints,
+                                        merchantID,
+                                        invoiceNo,
+                                        cardNo,
+                                        amount,
+                                        monthlyPayment,
+                                        currencyCode,
+                                        recurringUniqueID,
+                                        tranRef,
+                                        referenceNo,
+                                        approvalCode,
+                                        eci,
+                                        transactionDateTime,
+                                        agentCode,
+                                        channelCode,
+                                        issuerCountry,
+                                        issuerBank,
+                                        cardType,
+                                        idempotencyID,
+                                        paymentScheme,
+                                        respCode,
+                                        respDesc
+                                        })
         return Object.freeze({
-            getNO:() => NO || null,
-            getORDER_ID:() => ORDER_ID || null,
-            getSYSTEM:() => SYSTEM || null,
-            getREF_CODE:() => REF_CODE || null,
-            getAMOUNT:() => AMOUNT || null,
-            getPAID_AGENT:() => PAID_AGENT || null,
-            getMASKED_PAN:() => MASKED_PAN || null,
-            getAPPROVAL_CODE:() => APPROVAL_CODE || null,
-            getTRANSACTION_REF:() => TRANSACTION_REF || null,
-            getPROCESS_BY:() => PROCESS_BY || null,
-            getCHANNEL_RESPONE:() => CHANNEL_RESPONE || null,
-            getPAYMENT_STATUS:() => PAYMENT_STATUS || null,
-            getJSON_2C2P:() => JSON.stringify(JSON_2C2P) || null 
+            getpayment_no: () =>  null,
+            getorder_id: () =>  +ORDER_ID || null,
+            getcardToken: () =>  cardToken || null,
+            getloyaltyPoints: () =>  loyaltyPoints || null,
+            getmerchantID: () =>  merchantID || null,
+            getinvoiceNo: () =>  invoiceNo || null,
+            getcardNo: () =>  cardNo || null,
+            getamount: () =>  amount || null,
+            getmonthlyPayment: () =>  monthlyPayment || null,
+            getcurrencyCode: () =>  currencyCode || null,
+            getrecurringUniqueID: () =>  recurringUniqueID || null,
+            gettranRef: () =>  tranRef || null,
+            getreferenceNo: () =>  referenceNo || null,
+            getapprovalCode: () =>  approvalCode || null,
+            geteci: () =>  eci || null,
+            gettransactionDateTime: () =>  transactionDateTime || null,
+            getagentCode: () =>  agentCode || null,
+            getchannelCode: () =>  channelCode || null,
+            getissuerCountry: () =>  issuerCountry || null,
+            getissuerBank: () =>  issuerBank || null,
+            getcardType: () =>  cardType || null,
+            getidempotencyID: () =>  idempotencyID || null,
+            getpaymentScheme: () =>  paymentScheme || null,
+            getrespCode: () =>  respCode || null,
+            getrespDesc: () =>  respDesc || null,
+            getjson_2c2p: () =>  json_2c2p || null,
         })
     }
 }
+
+function getOrderId(invoiceNo){
+    const textOrderID = invoiceNo.substring(12,20)
+    const orderID = parseInt(textOrderID)
+    return orderID
+}
+
+
+
+
 

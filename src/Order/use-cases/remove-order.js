@@ -5,13 +5,11 @@ module.exports = function makeRemoveOrder({OrderHeaderAccessDB,
         if(!params){
             throw new Error('You must supply a order id.')
         }
-        console.log(params)
         var OrderHeaderEntity = makeGetOrderHeader({ 
             ORDHD_NO: params.order_id 
         })
 
         const orderToDelete = await OrderHeaderAccessDB.findById({OrderHeaderEntity})
-        console.log(orderToDelete)
         if(!orderToDelete || orderToDelete === undefined) {
             return {
                 isSuccess: false,

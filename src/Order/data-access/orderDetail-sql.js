@@ -5,7 +5,8 @@ module.exports = function buildOrderDetail({Mssql, sql}) {
       findById,
       insert,
       update,
-      remove
+      remove,
+      updateBookingID
     });
     async function setRequest({Pool,StatementType,OrderDetailEntity}){
       const Request = await Pool.request();
@@ -16,12 +17,14 @@ module.exports = function buildOrderDetail({Mssql, sql}) {
             .input('ORDDT_ITEM_NO', sql.Int, OrderDetailEntity.getORDDT_ITEM_NO())
             .input('ORDDT_NAMETH', sql.VarChar(500), OrderDetailEntity.getORDDT_NAMETH())
             .input('ORDDT_NAMEEN', sql.VarChar(500), OrderDetailEntity.getORDDT_NAMEEN())
+            .input('ORDDT_NAME_USER', sql.VarChar(500), OrderDetailEntity.getORDDT_NAME_USER())
+            .input('ORDDT_DOB', sql.Date, OrderDetailEntity.getORDDT_DOB())
             .input('ORDDT_DETAILTH', sql.VarChar(3000), OrderDetailEntity.getORDDT_DETAILTH())
             .input('ORDDT_DETAILEN', sql.VarChar(3000), OrderDetailEntity.getORDDT_DETAILEN())
             .input('ORDDT_REF1', sql.VarChar(50), OrderDetailEntity.getORDDT_REF1())
             .input('ORDDT_REF2', sql.VarBinary(50), OrderDetailEntity.getORDDT_REF2())
-            .input('ORDDT_REGULARPRICE', sql.Decimal(18, 0), OrderDetailEntity.getORDDT_REGULARPRICE())
-            .input('ORDDT_FINALPRICE', sql.Decimal(18, 0), OrderDetailEntity.getORDDT_FINALPRICE())
+            .input('ORDDT_REGULARPRICE', sql.Decimal(18, 4), OrderDetailEntity.getORDDT_REGULARPRICE())
+            .input('ORDDT_FINALPRICE', sql.Decimal(18, 4), OrderDetailEntity.getORDDT_FINALPRICE())
             .input('ORDDT_BCONNECTSALECODE', sql.VarChar(50), OrderDetailEntity.getORDDT_BCONNECTSALECODE())
             .input('ORDDT_STATUS', sql.VarChar(30), OrderDetailEntity.getORDDT_STATUS())
             .input('ORDDT_USE_BY', sql.VarChar(200), OrderDetailEntity.getORDDT_USE_BY())
@@ -29,7 +32,13 @@ module.exports = function buildOrderDetail({Mssql, sql}) {
             .input('ORDDT_USE_AUTHENBY', sql.VarChar(200), OrderDetailEntity.getORDDT_USE_AUTHENBY())
             .input('ORDDT_USE_HN', sql.VarChar(50), OrderDetailEntity.getORDDT_USE_HN())
             .input('ORDDT_BOOK_ID', sql.VarChar(50), OrderDetailEntity.getORDDT_BOOK_ID())
-            .input('ORDDT_BOOK_TYPE', sql.VarChar(50), OrderDetailEntity.getORDDT_BOOK_TYPE())     
+            .input('ORDDT_BOOK_TYPE', sql.VarChar(50), OrderDetailEntity.getORDDT_BOOK_TYPE())
+            .input('ORDDT_NOTE',sql.VarChar(3000),OrderDetailEntity.getORDDT_NOTE())
+            .input('ORDDT_REMARK', sql.VarChar(1000), OrderDetailEntity.getORDDT_REMARK())
+            .input('ORDDT_UTM_SOURCE', sql.VarChar(500), OrderDetailEntity.getORDDT_UTM_SOURCE())
+            .input('ORDDT_UTM_MEDIUM', sql.VarChar(500), OrderDetailEntity.getORDDT_UTM_MEDIUM())
+            .input('ORDDT_UTM_CAMPAIGN', sql.VarChar(500), OrderDetailEntity.getORDDT_UTM_CAMPAIGN())
+            .input('NEW_BOOKING_ID',sql.VarChar(50),OrderDetailEntity.getNEW_BOOKING_ID())
           }
     
     async function findAll({ StatementType = "GetAll",OrderDetailEntity} = {}) {
@@ -39,6 +48,7 @@ module.exports = function buildOrderDetail({Mssql, sql}) {
       Pool.close();
       return result.recordset;
     }
+    
     async function findById({ StatementType = "GetId",OrderDetailEntity} = {}) {
       const Pool = await Mssql.getConnect();
       const Request = await setRequest({Pool,StatementType,OrderDetailEntity})
@@ -54,7 +64,14 @@ module.exports = function buildOrderDetail({Mssql, sql}) {
       Pool.close();
     }
     
-    async function update({ StatementType = "Update",OrderDetailEntity} = {}) {
+    async function update({StatementType = "Update",OrderDetailEntity} = {}) {
+      const Pool = await Mssql.getConnect();
+      const Request = await setRequest({Pool,StatementType,OrderDetailEntity})
+      await Request.execute(`${STORED_PROCEDURE_NAME}`);
+      Pool.close();
+    }
+
+    async function updateBookingID({StatementType = "UpdateBooking",OrderDetailEntity} = {}) {
       const Pool = await Mssql.getConnect();
       const Request = await setRequest({Pool,StatementType,OrderDetailEntity})
       await Request.execute(`${STORED_PROCEDURE_NAME}`);

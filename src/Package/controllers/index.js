@@ -26,25 +26,3 @@ module.exports = {
   patchPackage
 };
 
-// getID()
-// async function a(){
-//     const httpRequest = {
-//         params:{
-//           package_id:'2'
-//         }
-//     }
-//     const b = await getPackageID(httpRequest)
-//     console.log(b)
-    
-// }
-
-
-// getPackage()
-// async function b(){
-//     const httpRequest = {
-    
-//     }
-//     const b = await getPackage(httpRequest)
-//     console.log(b)
-    
-// }

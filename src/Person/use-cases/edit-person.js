@@ -16,7 +16,7 @@ module.exports = function makeEditPerson({PersonAccessDB,makePerson,makeGetPerso
         }
     
         // set Person Params before passing through Mssql 
-        var PersonEntity  = makePerson({...existing,...edit})
+        var PersonEntity  = makePerson({...existing[0],...edit})
         await PersonAccessDB.update({PersonEntity})
         
 

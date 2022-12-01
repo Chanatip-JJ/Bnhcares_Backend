@@ -13,14 +13,12 @@ module.exports = function makeEditPackage({PackageAccessDB,makePackage,makeGetPa
         // check existing product
         if(!existing){
             throw new RangeError('Package not found.')
-        }
-
-            
+        }   
+        
         // set Package Params before passing through Mssql 
         var PackageEntity  = makePackage({...existing,...edit})
         await PackageAccessDB.update({PackageEntity})
         
-
         return  {
             message:'THe Package has successfully been edited'
         }        

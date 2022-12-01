@@ -3,7 +3,7 @@ module.exports = function makePostPayment({addPayment}) {
       const headers = {
         "Content-Type": "application/json",
       };
-      try {
+      try {        
         const paymentDetail = httpRequest.body
         const posted = await addPayment({
             paymentDetail
@@ -12,6 +12,7 @@ module.exports = function makePostPayment({addPayment}) {
           headers,
           statusCode: 201,
           body: { posted },
+          URLpath: `https://bnhcares.bnhhospital.com/#/thankyou/${posted}`
         };
       } catch (e) {
         

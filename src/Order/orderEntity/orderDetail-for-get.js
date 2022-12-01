@@ -6,6 +6,8 @@ module.exports = function buildGetOrderDetail({validator,DateTime,FixedOffsetZon
         ORDDT_ITEM_NO,
         ORDDT_NAMETH,
         ORDDT_NAMEEN,
+        ORDDT_NAME_USER,
+        ORDDT_DOB,
         ORDDT_DETAILTH,
         ORDDT_DETAILEN,
         ORDDT_REF1,
@@ -20,16 +22,22 @@ module.exports = function buildGetOrderDetail({validator,DateTime,FixedOffsetZon
         ORDDT_USE_HN,
         ORDDT_BOOK_ID,
         ORDDT_BOOK_TYPE,
-            
-        
+        ORDDT_NOTE,
+        ORDDT_REMARK,
+        ORDDT_UTM_SOURCE,
+        ORDDT_UTM_MEDIUM,
+        ORDDT_UTM_CAMPAIGN,
+        NEW_BOOKING_ID
 } = {}) {
     
     return Object.freeze({
         getORDDT_NO :()=> ORDDT_NO || null,
-        getORDDT_LINENO :()=> ORDDT_LINENO || null,
+        getORDDT_LINENO :()=> ORDDT_LINENO,
         getORDDT_ITEM_NO :()=> ORDDT_ITEM_NO || null,
         getORDDT_NAMETH :()=> ORDDT_NAMETH || null,
         getORDDT_NAMEEN :()=> ORDDT_NAMEEN || null,
+        getORDDT_NAME_USER :() => ORDDT_NAME_USER || null,
+        getORDDT_DOB:() => ORDDT_DOB || null,
         getORDDT_DETAILTH :()=> ORDDT_DETAILTH || null,
         getORDDT_DETAILEN :()=> ORDDT_DETAILEN || null,
         getORDDT_REF1 :()=> ORDDT_REF1 || null,
@@ -44,6 +52,12 @@ module.exports = function buildGetOrderDetail({validator,DateTime,FixedOffsetZon
         getORDDT_USE_HN :()=> ORDDT_USE_HN || null,
         getORDDT_BOOK_ID :()=> ORDDT_BOOK_ID || null,
         getORDDT_BOOK_TYPE :()=> ORDDT_BOOK_TYPE || null,
+        getORDDT_NOTE:() => ORDDT_NOTE || null,
+        getORDDT_REMARK:() => ORDDT_REMARK || null,
+        getORDDT_UTM_SOURCE: ()=> ORDDT_UTM_SOURCE || null,
+        getORDDT_UTM_MEDIUM: ()=> ORDDT_UTM_MEDIUM || null,
+        getORDDT_UTM_CAMPAIGN: ()=> ORDDT_UTM_CAMPAIGN || null,
+        getNEW_BOOKING_ID: ()=> NEW_BOOKING_ID || null
     })
 }
 }

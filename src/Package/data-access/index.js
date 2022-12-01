@@ -1,4 +1,4 @@
-const Mssql  = require('../../library/Mssql')
+const Mssql  = require('../../helpers/Mssql')
 const buildPackage = require('./packages-sql')
 const sql = require('mssql/msnodesqlv8')
 

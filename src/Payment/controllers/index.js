@@ -1,6 +1,6 @@
 const {listPayment,
       listPaymentID,
-      addPayment,
+      addPayment
       } = require('../use-cases');
       
 const makeGetPayment = require('./get-payment');
@@ -14,9 +14,11 @@ const getPaymentID = makeGetPaymentID({listPaymentID});
 const postPayment = makeAddPayment({addPayment})
 
 
+
+
 module.exports = {
   getPayment,
   getPaymentID,
-  postPayment,
+  postPayment
 };
 
